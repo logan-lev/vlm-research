@@ -1,0 +1,109 @@
+1. MEASURING MASSIVE MULTITASK LANGUAGE UNDERSTANDING (MMLU): 
+
+Paper: https://arxiv.org/pdf/2009.03300
+
+- Measures a text model’s multitask accuracy
+
+- Covers 57 tasks including elementary mathematics, US history, computer science, law, etc.
+
+- Evaluates models exclusively in zero-shot and few-shot settings
+
+- Ranges in difficulty from an elementary level to an advanced professional level, and it tests both world knowledge and problem solving ability
+
+- Test data: https://github.com/hendrycks/test
+
+- Includes practice questions for tests such as the Graduate Record Examination and the United States Medical Licensing Examination as well as questions designed for undergraduate courses and questions designed for readers of Oxford University Press books
+
+- Some tasks cover a subject, like psychology, but at a specific level of difficulty such as “Elementary”, “High School”, “College”, or “Professional”
+
+- 15,908 questions in total which was split into a few-shot development set, a validation set, and a test set
+
+- The few-shot development set has 5 questions per subject, the validation set may be used for selecting hyperparameters and is made of 1540 questions, and the test set has 14079 questions. Each subject contains 100 test examples at the minimum, which is longer than most exams designed to assess people.
+
+
+2. ARC, the AI2 Reasoning Challenge:
+
+Paper: https://arxiv.org/pdf/1803.05457
+
+- Aimed at testing the advanced reasoning and commonsense understanding of AI systems
+
+- Consists of multiple-choice science questions sourced from elementary and middle school science exams
+
+- Questions divided between the Easy Set and the Challenge Set
+	
+	- The easy set contains questions that can be answered with simple information retrieval.
+	
+	- The challenge set contains more complex questions that need more than surface-level reasoning and understanding of the context.
+
+- Includes 7,787 multiple-choice questions split between the two sets.
+
+- Mostly focused on the gap between human-level reasoning vs current AI capabilities
+
+3. Visual Question Answering (VQA):
+
+https://arxiv.org/abs/1505.00468
+https://visualqa.org/
+
+- Contains open-ended questions about images that require an understanding of vision, language and commonsense knowledge to answer
+
+- 265,016 images (COCO and abstract scenes)
+
+- At least 3 questions (5.4 questions on average) per image
+
+- 10 ground truth answers per question
+
+- 3 plausible (but likely incorrect) answers per question
+
+- Automatic evaluation metric
+
+- For answering, involves understanding both the content of the image and the semantics of the question.
+
+- Questions can be simple or complex, requiring reasoning, common sense, and contextual understanding
+
+4. Flickr30k Entities:
+
+https://arxiv.org/pdf/1505.04870
+
+- Designed to enhance the alignment between image regions and textual phrases, providing richer and more detailed annotations compared to previous datasets.
+
+- Contains 30,000 images with 5 sentences describing each image
+
+- Adds annotations that link specific regions in an image to corresponding phrases in the sentences
+
+- Human annotators manually draw bounding boxes to segment the images which they then proceed to match with phrases from the image description
+
+- Serves as a benchmark for evaluating the performance of models in tasks like image captioning, visual question answering, and visual grounding
+
+- Assesses how well models can align specific regions to corresponding phrases
+
+5. Microsoft COCO Dataset (COCO):
+
+https://arxiv.org/pdf/1405.0312
+
+- Designed to support the development and evaluation of object detection, segmentation, and captioning models
+
+- Focuses on common objects in their natural context
+
+- Contains 2.5 million label instances in 328,000 images with 91 object types that can be easily recognized be a 4 year old
+
+- Annotations contain object detection, segmentation, keypoints, and captions
+
+	- Bounding boxes and labels for each object type
+	- Pixel-level masks for object instances
+	- Annotations for human keypoints (e.g., joints on elbows and knees)
+	- Each image has five descriptive sentences provided by human annotators
+
+- Types include people, animals, vehicles, furniture, and household items
+
+- COCO is the gold standard for evaluating object detection and segmentation models
+
+- COCO’s comprehensive annotations enable the development of models that can perform multiple tasks simultaneously, such as detecting objects, segmenting instances, and generating descriptive captions
+
+- COCO evaluates using Average Percision (measures the precision-recall trade-off), BLEU (evaluates the quality of text), METEOR (improvement of BLEU by considering synonymy and stemming), and CIDEr (measures the consensus between the generated caption and multiple reference captions)
+
+
+
+
+
+
+

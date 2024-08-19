@@ -1,0 +1,92 @@
+https://youtu.be/UJy-zvWMs4g?si=Kt2ejEvoTbmrJed4
+https://encord.com/blog/vision-language-models-guide/
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- VLM: Has image and text prompt as inputs and generates a text output
+
+- LLava 1.6 (Hermes 34B)
+- Idefics 9b
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Leaderboard: WildVision Arena (Huggingface)
+- Anonymous models so no bias
+
+- GPT4 at the top of VLM and LLM leaderboards based on Elo Ratings:
+	- The Elo rating system is a method for calculating the relative skill levels of players in zero-sum games such as chess or esports. It is named after its creator Arpad Elo, a Hungarian-American physics professor.
+	- The Chatbot Arena leaderboard uses an Elo rating system to rank LLM chatbots against one another. This is a ranking system that pits two different players against one another and increases or decreases each player's score based on the expected versus actual outcome of the match.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Leaderboard: OpenVLM Leaderboard (Huggingface)
+
+- Open Compass: VLM eval kit for evaluation benchmarks
+- Evolving LMMs Lab: lmms-eval
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Huggingface: MMMU
+	- A benchmark designed to evaluate multimodal models on massive multi-discipline tasks demanding college-level subject knowledge and deliberate reasoning. MMMU includes 11.5K multimodal questions from college exams, quizzes, and textbooks, covering six core disciplines: Art & Design, Business, Science, Health & Medicine, Humanities & Social Science, and Tech & Engineering. These questions span 30 subjects and 183 subfields, comprising 30 highly heterogeneous image types, such as charts, diagrams, maps, tables, music sheets, and chemical structures.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- VisIT-Bench: A Benchmark for Vision-Language Instruction Following Inspired by Real-World Use
+
+- Testing 70 diverse “wish-list” skills with an automated ranking system, it advances the ongoing assessment of multimodal chatbot performance.
+
+- An example from VisIT-Bench, featuring an image, an instruction, an “instruction-conditioned caption”, a detailed description allowing a model to follow the instruction using just the text, and a human-verified response from GPT-4. These elements are used for evaluating multimodal chatbots and updating a leaderboard.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- BLEU: The Bilingual Evaluation Understudy (BLEU) metric was originally proposed to evaluate machine translation tasks. It computes the precision of the target text compared to a reference (ground truth) by considering how many words in the candidate sentence appear in the reference. 
+
+- BLEU compares a generated translation to one or more reference translations
+- BLEU compares n-grams of the generation with n-grams of the references
+- BLEU is based on n-gram precision to measure translation quality but translation systems can overgenerate "reasonable" words
+- So, BLEU uses a modified n-gram precision to clip the number of matches meaning it only can count up to the maximum times it appears in the reference translation
+- BLEU also uses bigrams, trigrams, and 4-grams to handle ordering problems
+
+- Pros: 
+	- Fast and simple to calculate
+	- Widely used
+
+- Cons:
+	- Doesn't consider meaning
+	- Doesn't incorporate sentence structure
+	- Struggles with non-English languages
+	- Hard to compare scores with different tokenizers
+
+- SacreBLEU addresses the tokenization limitations of BLEU
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- ROUGE: Recall-Oriented Understudy for Gisting Evaluation (ROUGE) computes recall by considering how many words in the reference sentence appear in the candidate.
+
+- ROGUE compares a generated summary to one or more reference summaries
+- ROGUE-N compares n-grams of the generation with n-grams of the references
+- ROGUE-1 is based on unigram precision and recall to measure summarization quality
+- ROGUE-2 compares bigrams instead of unigrams; Chunk the sentence into pairs of consecutive words, and then count how many pairs in the generated summary are found in the reference summary
+- ROGUE-L doesn't compare n-gram, but instead treats each summary as a sequence of words and then looks for the longest common subsequence (LCS); Doesn't depend on consecutive
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- CIDEr: Consensus-based Image Description Evaluation (CIDEr) compares a target sentence to a set of human sentences by computing the average similarity between reference and target sentences using TF-IDF scores.
+
+- CIDEr is an automatic metric used to evaluate the quality of machine generated captions. It measures the similarity between a generated caption and a set of reference captions.
+- By measuring the similarity, grammar, saliency, and accuracy (both precision and recall) of the machine caption are taken into account.
+- Automatic Metric: Doesn't require human evaluation
+- Human data is collected through Amazon Mechanical Turk (AMT).
+- AMT provides an on-demand, scalable, human workforce to complete jobs that humans can do better than computers.
+- CIDEr is designed to capture the consensus view of the reference text, meaning that it gives higher scores to generated captions that are similar to multiple reference captions rather than just one.
+- Many other metrics like BLEU don't account for the consensus view.
+- CIDEr applies weighting to n-grams depending on their importance.
+	- The more common an n-gram is, the less important it is.
+
+- Steps:
+	- Stemming is applied to both generated and reference captions
+	- Represent each sentence using the set of n-grams present in it
+	- Compute the overlap between the n-gram sets of the generated sentence and the reference sentence
+	- Calculate the Term Frequency - Inverse Document Frequency (TF-IDF)
+	- Calculate the CIDEr score
+		- CIDEr_n score for n-gram of length n is calculated with the average cosine similarity (0 to 1) between the generated and reference sentences, which accounts for both precision and recall.

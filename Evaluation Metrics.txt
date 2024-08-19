@@ -1,0 +1,74 @@
+~~~~~~~~~~~~~~~~~~~~
+GENERAL VLM METRICS:
+~~~~~~~~~~~~~~~~~~~~
+
+- Visual Question Answering (VQA):
+
+	- Accuracy: Measures the percentage of correctly answered questions out of all questions.
+
+	- VQA Score: Custom metric used by the VQA challenge, combining accuracy and consensus among human annotators.
+
+- Visual Grounding / Visual Referring Expression:
+
+	- Precision: Measures the percentage of correctly identified regions out of all predicted regions.
+
+	- Recall: Measures the percentage of correctly identified regions out of all actual regions.
+
+	- F1 Score: Harmonic mean of precision and recall.
+
+	- IoU (Intersection over Union): Measures the overlap between the predicted bounding box and the ground truth bounding box.
+
+- Image Classification with Text:
+
+	- Top-K Accuracy: Measures if the correct label is within the top K predictions.
+
+	- mAP (Mean Average Precision): Measures the average precision across all classes.
+
+- Zero-Shot Learning:
+
+- Accuracy: Measures the percentage of correctly classified instances without any prior training on the specific categories.
+
+- Harmonic Mean: Combines accuracy on seen and unseen classes to evaluate performance on both.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+POSSIBLE SPECIFIC PAINT METRICS:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Defect Detection:
+
+	- Precision: Measures the percentage of correctly identified defects out of all identified defects.
+
+	- Recall: Measures the percentage of correctly identified defects out of all actual defects.
+
+	- F1 Score: Harmonic mean of precision and recall to provide a single performance measure.
+
+	- IoU (Intersection over Union): Measures the overlap between the predicted defect regions and the ground truth defect regions.
+
+- Paint Recommendation:
+
+	- Accuracy: Measures the percentage of correctly recommended paint types based on the wall material.
+
+	- Top-K Accuracy: Measures if the correct paint type is within the top K recommendations.
+
+- Surface Area Estimation:
+
+	- Mean Absolute Error (MAE): Measures the average absolute difference between the predicted and actual surface areas.
+
+	- Root Mean Squared Error (RMSE): Measures the square root of the average squared differences between predicted and actual surface areas.
+
+	- R² Score (Coefficient of Determination): Measures how well the predicted surface area values match the actual values, indicating the proportion of variance explained by the model.
+
+- Overall System Performance:
+
+	- End-to-End Accuracy: Measures the percentage of complete and correct outputs (defect detection, paint recommendation, and surface area estimation) out of all test cases.
+
+	- User Satisfaction: Measures the quality and usability of the model's output through user surveys or feedback.
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+Segment Anything
+
+- Has multiple modes
+
+- samAutomaticMaskGenerator
+		- Returns a list of masks, where each mask is a dictionary containing a segmentation key, as well as info on the mask such as area of the mask in pixels, the boundary box of the mask, and more.
+
+- Sam outputs duplicate masks to allow you to pick the right mask for your use case meaning you can use some sort of mask post processing.
+
+- samPredictor lets you choose a bounding box for it to segment in an image. Returns a tuple of three elements. Still gives duplicate masks for you to choose from.
+
+Grounding Dino
+
+- Zero-Shot Object Detection: Excels at detecting objects even when they are not part of the predefined set of classes in the training data.
+
+- Referring Expression Comprehension (REC): Instead of detecting people and chairs in an image and then writing custom logic to determine whether a chair is occupied, prompt engineering can be used to ask the model to detect only those chairs where a person is sitting.
+
+- Elimination of Hand-Designed Components like NMS: Grounding DINO simplifies the object detection pipeline by removing the need for hand-designed components, such as Non-Maximum Suppression (NMS). This streamlines the model architecture and training process while improving efficiency and performance.
+
+Idefics
+
+- IDEFICS is an 80 billion parameters multimodal model that accepts sequences of images and texts as input and generates coherent text as output. It can answer questions about images, describe visual content, create stories grounded in multiple images, etc.
+
+- IDEFICS was trained on a mixture of openly available datasets: Wikipedia, Public Multimodal Dataset, and LAION, as well as a new 115B token dataset called OBELICS that we created. OBELICS consists of 141 million interleaved image-text documents scraped from the web and contains 353 million images.

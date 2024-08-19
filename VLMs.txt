@@ -1,0 +1,176 @@
+Florence 2:
+
+- Excels in tasks such as captioning, object detection, and segmentation by interpreting simple text prompts
+
+- Uses the large-scale FLD-5B dataset, consisting of 126 million images and 5.4 billion comprehensive visual annotations
+
+- Despite its small size (0.77 billion parameters), it achieves results on par with models many times larger, like Kosmos-2 (1.6 billion parameters)
+
+- Vision Encoder: DaViT vision encoder to convert images into visual token embeddings.
+- Text Embeddings: BERT-generated text embeddings.
+- Multi-Modal Encoder-Decoder: Transformer-based architecture to process combined visual and text embeddings.
+- Location Tokens: Added for region-specific tasks to represent quantized coordinates.
+
+- Can be used for:
+	- Image Captioning
+	- Object Detection
+	- Instance Segmentation
+	- Visual Grounding: Associating parts of the image with corresponding text descriptions
+	- Zero-shot Learning: Performing tasks without task-specific training data, leveraging its generalized knowledge from the FLD-5B dataset
+
+- Pros:
+
+	- Unified Representation: Capable of performing multiple vision tasks with a single model, reducing the need for separate specialized models.
+
+	- Efficiency: Compact architecture enables deployment on resource-constrained devices.
+
+	- Strong Zero-shot Performance: Excels in zero-shot learning scenarios, outperforming larger models.
+
+	- Versatility: Applicable to a wide range of vision and vision-language tasks, from captioning to segmentation.
+
+- Cons:
+
+	- Dataset Availability: The FLD-5B dataset, crucial for training and fine-tuning, is not yet publicly available, potentially limiting reproducibility and further research.
+
+	- Task-specific Optimization: While the unified representation is efficient, it may not always match the performance of specialized models optimized for single tasks.
+
+https://blog.roboflow.com/florence-2/
+https://clarifai.com/microsoft/florence/models/florence-2-large
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Idefics 2:
+
+- 8B open-source VLM
+
+- Image-aware Decorder Enhanced à la Flamingo with Interleaved Cross-attentionS
+
+- A general multimodal model that takes as input arbitrary sequences of texts and images, and generates text responses
+
+- It can answer questions about images, describe visual content, create stories grounded in multiple images, extract information from documents, and perform basic arithmetic operations
+
+- The performance on Visual Question Answering benchmarks is top of its class size, and competes with much larger models such as LLava-Next-34B and MM1-30B-chat
+
+- Trained on a mixture of openly available datasets for the pretraining: Interleaved webdocuments (Wikipedia,OBELICS), image-caption pairs (Public Multimodal Dataset, LAION-COCO), OCR data (PDFA (en), IDL and Rendered-text, and image-to-code data (WebSight))
+
+- Multimodal instruction fine-tuning dataset:  The Cauldron, an open compilation of 50 manually-curated datasets formatted for multi-turn conversations
+
+- Fine-tuned Idefics2 on the concatenation of The Cauldron and various text-only instruction fine-tuning datasets
+
+- Improvements over Idefics1:
+
+	- Better image manipulation in the native resolution of up to 980 x 980 pixels and native aspect ratios. Images will no longer need to be resized to accommodate a fixed-size square ratio.
+
+	- Enhanced OCR abilities by integrating data that requires the model to transcribe text in an image or a document
+
+	- Improved abilities in answering questions on charts, figures, and documents with appropriate training data
+
+	- The architecture has been simplified, shifting away from the gated cross-attentions of Idefics1
+
+- All of these improvements along with better pre-trained backbones yield a significant jump in performance over Idefics1 for a model that is 10x smaller
+
+https://huggingface.co/blog/idefics2
+https://venturebeat.com/ai/hugging-face-introduces-idefics2-an-8b-open-source-visual-language-model/
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+LLaVA:
+
+- Large Language and Vision Assistant
+
+- The first attempt to use language-only GPT-4 to generate multimodal language-image instruction-following data
+
+- End-to-end trained large multimodal model that connects a vision encoder and LLM for general-purpose visual and language understanding
+
+- Yields a 85.1% relative score compared with GPT-4 on a synthetic multimodal instruction-following dataset. When fine-tuned on Science QA, the synergy of LLaVA and GPT-4 achieves a new state-of-the-art accuracy of 92.53%
+
+- Combines a vision encoder and Vicuna to enable visual and language comprehension
+
+- Utilizes the LLaMA model, which is renowned for its efficacy in open-source language-only instruction-tuning projects
+
+- Relies on the pre-trained CLIP visual encoder ViT-L/14 for visual content processing, which excels in visual comprehension
+
+- The encoder extracts visual features from input images and connects them to language embeddings through a trainable projection matrix. This projection effectively translates visual features into language embedding tokens, thereby bridging the gap between text and images
+
+- Pre-training for Feature Alignment: LLaVA aligns visual and language features to ensure compatibility in this initial stage
+
+- Fine-tuning End-to-End: While the visual encoder's weights remain unchanged, both the projection layer's pre-trained weights and the LLM's parameters become subject to adaptation. This fine-tuning can be tailored to different application scenarios, yielding versatile capabilities
+
+- LLaVA 1.5:
+
+	- Added an MLP vision-language connector which enhances the system's capabilities
+
+	- Integrating academic task-oriented data further enhances its performance and effectiveness
+
+- LLaVA 1.6 (LLaVA-NeXT):
+
+	- Uses more LLMs, including Mistral-7B and Nous-Hermes-2-Yi-34B
+
+	- These LLMs possess nice properties, flexible commercial use terms, strong bilingual support, and a larger language model capacity
+
+	- Increasing the input image resolution to 4x more pixels. This allows it to grasp more visual details. It supports three aspect ratios, up to 672x672, 336x1344, and 1344x336 resolution
+
+	- Better visual reasoning and zero-shot OCR capability with multimodal document and chart data
+
+	- Improved visual instruction tuning data mixture with a higher diversity of task instructions and optimizing for responses that solicit favorable user feedback
+
+	- Better visual conversation for more scenarios covering different applications. Better world knowledge and logical reasoning
+
+	- Efficient deployment and inference with SGLang (A structured generation language designed for LLMs)
+
+	- Re-uses the pre-trained connector of LLaVA-1.5 and still uses less than 1 million visual instruction tuning samples
+
+- LLaVA-Next (LLaVA 1.6) compares with SoTA methods (GPT-4V, Gemini, and LLaVA 1.5) on benchmarks for instruction-following LMMs. LLaVA-1.6 achieves improved reasoning, OCR, and world knowledge and exceeds Gemini Pro on several benchmarks
+
+- LLaVA's pre-training data is based on a subset of CC3M, and its fine-tuning data draws from a subset of COCO. One way to enhance its concept coverage, especially with regard to entities and OCR, is to consider pre-training on even larger image-text datasets
+
+- LLaVA has shown promising results, even approaching the capabilities of the new ChatGPT in some scenarios. To advance further, one interesting avenue is the integration of powerful vision models, such as SAM
+
+https://encord.com/blog/llava-large-language-vision-assistant/
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+GPT-4o:
+
+- GPT-4 Omni; A reference to the model's multiple modalities for text, vision and audio
+
+- GPT-4o can understand any combination of text, image and audio input and respond with outputs in any of those forms
+
+- It can respond to audio inputs in as little as 232 milliseconds, with an average of 320 milliseconds
+
+- It matches GPT-4 Turbo performance on text in English and code, with significant improvement on text in non-English languages, while also being much faster and 50% cheaper in the API
+
+- GPT-4o is especially better at vision and audio understanding compared to existing models
+
+- As measured on traditional benchmarks, GPT-4o achieves GPT-4 Turbo-level performance on text, reasoning, and coding intelligence, while setting new high watermarks on multilingual, audio, and vision capabilities
+
+- The GPT-4o model can engage in real-time verbal conversations without any real noticeable delays
+
+- GPT-4o has been trained with a knowledge base and is able to respond to questions
+
+- GPT-4o can execute common text LLM tasks including text summarization and generation
+
+- GPT-4o has advanced capabilities in handling more than 50 different languages
+
+- Understands user sentiment across different modalities of text, audio and video
+
+- GPT-4o can generate speech with emotional nuances
+
+- Can generate and understand spoken language, which can be applied in voice-activated systems, audio content analysis and interactive storytelling
+
+- Can support real-time translation from one language to another
+
+- Can analyze images and videos, allowing users to upload visual content that GPT-4o will understand, be able to explain and provide analysis for
+
+- The vision and reasoning capabilities can enable users to analyze data that is contained in data charts. GPT-4o can also create data charts based on analysis or a prompt
+
+- Can remember previous interactions and maintain context over longer conversations
+
+- With a context window supporting up to 128,000 tokens, GPT-4o can maintain coherence over longer conversations or documents, making it suitable for detailed analysis
+
+- Designed to minimize the generation of incorrect or misleading information. GPT-4o includes enhanced safety protocols to ensure outputs are appropriate and safe for users
+
+- 50% cheaper than GPT-4 Turbo
+
+https://openai.com/index/hello-gpt-4o/
+https://www.techtarget.com/whatis/feature/GPT-4o-explained-Everything-you-need-to-know#:~:text=The%20model%20can%20generate%20and,Image%20understanding%20and%20vision.
